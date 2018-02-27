@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Casa da Pizza Atendimento</title>
+	<script src='https://code.jquery.com/jquery-3.2.1.min.js'></script>
+	<link rel="stylesheet" href="assets/css.css">
+</head>
+<body>
+
+<div class='container'>
+
+	<div class='top'><p id='date' style='text-align: center;'></p>
+
+		<a onclick="botaoReset();" id="botaoReset"><img src="img/reset.png" id='reset'></a>
+	</div>
+
+	<div id='form'>
+		<form action="/post" method="POST">
+			<p>TELEFONE:</p>
+			<input type="text" name="telefone" id='input' required style="cursor: auto;">
+			<input type="submit" name="btnCadastrar" class="button" value="CADASTRAR">
+			<input type="reset" name="btnCadastrar" class="button" value="LIMPAR" id='limpar'>
+			</form>
+		</form>
+	</div>
+
+
+	<div id='list'>
+	<table style="width: 100%;">
+		<% contact.reverse().forEach(function(contact){ %>
+		<% if(contact.status == 'espera'){%>
+		<tr>
+		<td><div id='<%=contact.status%>'><a href="edit/<%=contact.id%>"><%=contact.telefone%></a></div></td>
+		</tr>
+		<%}%>
+		<%});%>
+
+		<% contact.reverse().forEach(function(contact){ %>
+		<% if(contact.status == 'realizado'){%>
+		<tr>
+		<td><div id='<%=contact.status%>'><a href="edit/<%=contact.id%>"><%=contact.telefone%></a></div></td>
+		</tr>
+		<%}%>
+		<%});%>
+
+		<% contact.reverse().forEach(function(contact){ %>
+		<% if(contact.status == 'fechado'){%>
+		<tr>
+		<td><div id='<%=contact.status%>'><a href="edit/<%=contact.id%>"><%=contact.telefone%></a></div></td>
+		</tr>
+		<%}%>
+		<%});%>
+		</table>
+	</div>
+
+
+
+	<div id="footer">
+		<p style="font-size: 12px;">FECHADO:
+		<img src="img/01.png" id='shape'>EM ESPERA:
+		<img src="img/02.png" id='shape'> REALIZADO:
+		<img src="img/03.png" id='shape'>
+		</p>
+	</div>
+</div>
+
+<script language=javascript type="text/javascript" src="assets/js.js"></script>
+<script type="text/javascript">
+	
+var $rows = $("tr");
+
+$("#input").keyup(function() {
+    var val = $.trim(this.value);
+    if (val === "")
+        $rows.show();
+    else {
+        $rows.hide();
+        $rows.has("td:contains(" + val + ")").show();
+    }
+});
+
+var botaoReset = document.getElementById('botaoReset');
+
+botaoReset.onclick  = function(){
+	window.location.href = '/reset';
+};
+
+</script>
+
+</body>
+</html>

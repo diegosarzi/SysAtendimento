@@ -1,0 +1,10 @@
+# INSTALAR MONGODB
+# criar pasta /data/db ### PARA UTILIZACAO DO MONGO
+# INSTALAR NODE.JS
+
+ATUALIZAR PATH, DO DIRETORIO DO MONGODB + NODE.JS + PYTHON + PYTHON/SCRIPT
+
+# pip install pyinstaller
+
+# WINDOWS+R ### Adicionar programas aqui!
+shell:startup
